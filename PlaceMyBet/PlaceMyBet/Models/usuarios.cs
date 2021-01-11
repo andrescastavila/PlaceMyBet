@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +16,8 @@ namespace PlaceMyBet.Models
             this.apellido = apellido;
             this.email = email;
             this.Edad = Edad;
-            
+
+            Debug.WriteLine("");
         }
 
         public int idUsuario { get; set; }
@@ -25,4 +27,9 @@ namespace PlaceMyBet.Models
         public int Edad { get; set; }
        
     }
+
+
+   
+    
+
 }

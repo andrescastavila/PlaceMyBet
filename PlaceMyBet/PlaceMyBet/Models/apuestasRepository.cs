@@ -44,5 +44,39 @@ namespace PlaceMyBet.Models
                 return null;
             }
         }
+
+
+
+        internal List<apuestasDTO> RetrieveDTO()
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "SELECT usuarios.eMail,mercados.tipoMercado, apuestas.tipoApuesta, apuestas.cuota, apuestas.ingreso FROM usuarios INNER JOIN apuestas ON apuestas.idUsuario LIKE usuarios.idUsuario INNER JOIN mercados ON apuestas.idMercado LIKE mercados.idMercado";
+           
+
+            try
+            {
+                con.Open(); //abrimos conexion con la base de datos
+                MySqlDataReader res = command.ExecuteReader();
+
+                apuestasDTO a = null;
+                List<apuestasDTO> apuestas = new List<apuestasDTO>();
+
+                while (res.Read())
+                {
+                    a = new apuestasDTO(res.GetString(0), res.GetString(1), res.GetString(2), res.GetString(3), res.GetFloat(4));
+                    apuestas.Add(a);
+                }
+
+                con.Close();
+                return apuestas;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+        }
+
     }
 }

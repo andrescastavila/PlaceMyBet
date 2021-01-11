@@ -18,4 +18,18 @@ namespace PlaceMyBet.Models
         public String equipoLocal { get; set; }
         public String equipoVisitante { get; set; }
     }
+
+
+
+
+    public class eventoDTO
+    {
+        public eventoDTO(string equipoLocal, string equipoVisitante)
+        {
+            this.equipoLocal = equipoLocal;
+            this.equipoVisitante = equipoVisitante;
+        }
+        public String equipoLocal { get; set; }
+        public String equipoVisitante { get; set; }
+    }
 }

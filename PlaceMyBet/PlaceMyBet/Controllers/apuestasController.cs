@@ -27,8 +27,10 @@ namespace PlaceMyBet.Controllers
         }
 
         // POST: api/apuestas
-        public void Post([FromBody]string value)
+        public void Post([FromBody]apuestasDTO apuesta)
         {
+            var repo = new apuestasRepository();
+            repo.RetrieveDTO();
         }
 
         // PUT: api/apuestas/5

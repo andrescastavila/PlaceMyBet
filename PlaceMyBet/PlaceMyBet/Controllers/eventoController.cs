@@ -26,6 +26,16 @@ namespace PlaceMyBet.Controllers
             return null;
         }
 
+        // GET: api/evento?mercado=tipoMercado
+        public IEnumerable<evento> GetMercado(int tipoMercado)
+        {
+            var repo = new eventoRepository();
+            List<evento> eventos = repo.RetrieveByMercado(tipoMercado);
+            return null;
+        }
+
+
+
         // POST: api/evento
         public void Post([FromBody]eventoDTO evento)
         {

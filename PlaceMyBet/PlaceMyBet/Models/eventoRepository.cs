@@ -80,5 +80,47 @@ namespace PlaceMyBet.Models
                 return null;
             }
         }
+
+
+
+
+
+
+        internal List<evento> RetrieveByMercado(int tipoMercado)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "Select * from eventos where mercado = @A";
+            command.Parameters.AddWithValue("@A", tipoMercado);
+
+            try
+            {
+                con.Open();
+                MySqlDataReader res = command.ExecuteReader();
+
+                evento e = null;
+                List<evento> eventos = new List<evento>();
+                while (res.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + res.GetString(0) + " " + res.GetString(1));
+                    e = new evento(res.GetInt32(0), res.GetString(1), res.GetString(2));
+                    eventos.Add(e);
+                }
+
+                Debug.WriteLine("--------------- Todo ha ido bien");
+
+                con.Close();
+                return eventos;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+        }
+
+
+
+
     }
 }

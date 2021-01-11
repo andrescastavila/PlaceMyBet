@@ -17,7 +17,7 @@ namespace PlaceMyBet.Models
             this.email = email;
             this.Edad = Edad;
 
-            Debug.WriteLine("");
+            
         }
 
         public int idUsuario { get; set; }

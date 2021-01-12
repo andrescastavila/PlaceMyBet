@@ -50,4 +50,21 @@ namespace PlaceMyBet.Models
     }
 
 
+    public class apuestasById
+    {
+        public apuestasById(string email, string tipoMercado, string tipoApuesta, string cuota, float ingreso)
+        {
+            this.email = email;
+            this.tipoMercado = tipoMercado;
+            this.tipoApuesta = tipoApuesta;
+            this.cuota = cuota;
+            this.ingreso = ingreso;
+        }
+        public String email { get; set; }
+        public String tipoMercado { get; set; }
+        public String tipoApuesta { get; set; }
+        public String cuota { get; set; }
+        public float ingreso { get; set; }
+    }
+
 }

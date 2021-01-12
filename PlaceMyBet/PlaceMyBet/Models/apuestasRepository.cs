@@ -116,5 +116,38 @@ namespace PlaceMyBet.Models
             }
         }
 
+
+
+        internal List<apuestasById> RetrieveByMercado(int idMercado)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "SELECT usuarios.email,mercados.tipoMercado, apuestas.tipoApuesta, apuestas.cuota, apuestas.ingreso FROM usuarios INNER JOIN apuestas ON apuestas.idUsuario LIKE usuarios.idUsuario INNER JOIN mercados ON apuestas.idMercado LIKE mercados.idMercado WHERE apuestas.idMercado = @A";
+            command.Parameters.AddWithValue("@A", idMercado);
+
+            try
+            {
+                con.Open(); //abrimos conexion con la base de datos
+                MySqlDataReader res = command.ExecuteReader();
+
+                apuestasById a = null;
+                List<apuestasById> apuestas = new List<apuestasById>();
+
+                while (res.Read())
+                {
+                    a = new apuestasById(res.GetString(0), res.GetString(1), res.GetString(2), res.GetString(3), res.GetFloat(4));
+                    apuestas.Add(a);
+                }
+                
+                con.Close();
+                return apuestas;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+        }
+
     }
 }

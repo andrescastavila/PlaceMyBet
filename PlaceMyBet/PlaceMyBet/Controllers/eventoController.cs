@@ -31,7 +31,7 @@ namespace PlaceMyBet.Controllers
         {
             var repo = new eventoRepository();
             List<evento> eventos = repo.RetrieveByMercado(tipoMercado);
-            return null;
+            return eventos;
         }
 
 

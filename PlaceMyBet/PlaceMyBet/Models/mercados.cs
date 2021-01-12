@@ -42,4 +42,8 @@ namespace PlaceMyBet.Models
         public String cuotaOver { get; set; }
     }
 
+
+
+   
+
 }
